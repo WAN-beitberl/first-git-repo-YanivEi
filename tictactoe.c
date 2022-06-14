@@ -1,12 +1,18 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
 
-void win(int player, int winner, int pos[]){
+void print_game(int pos[]){
     printf("\n");
     printf("%c|%c|%c\n", pos[0],pos[1],pos[2]);
     printf("-----\n");
     printf("%c|%c|%c\n", pos[3],pos[4],pos[5]);
     printf("-----\n");
     printf("%c|%c|%c\n", pos[6],pos[7],pos[8]);
+}
+
+void win(int player, int winner, int pos[]){
+    print_game(pos);
     if(winner==1){
         printf("Player %d is the winner!\n", player);
     }
@@ -14,7 +20,6 @@ void win(int player, int winner, int pos[]){
         printf("Draw!\n");
     }
 }
-//WOAAAAHH THIS TEXT IS DIFFERENT
 
 int main(){
     int winner = 0; //bool
@@ -27,13 +32,13 @@ int main(){
     int i;
     int k;
 
-    printf("Welcome to tic tac toe! (very original)\nhere is the board, good luck:");
-    printf("\n");
-    printf("1|2|3\n");
+    printf("\nWelcome to tic tac toe! (very original)\nhere is the board order:\n");
+    printf("\n1|2|3\n");
     printf("-----\n");
     printf("4|5|6\n");
     printf("-----\n");
     printf("7|8|9\n");
+    printf("\nplease enter the number you want to play!\n");
 
     for (i=0; i<9; i++){
         pos[i] = ' ';
@@ -41,12 +46,7 @@ int main(){
 
     while(count < 9 && winner == 0){
         flag = 0;
-        printf("\n");
-        printf("%c|%c|%c\n", pos[0],pos[1],pos[2]);
-        printf("-----\n");
-        printf("%c|%c|%c\n", pos[3],pos[4],pos[5]);
-        printf("-----\n");
-        printf("%c|%c|%c\n", pos[6],pos[7],pos[8]);
+        print_game(pos);
 
         if (count % 2 == 0){
             sign = 'X';
@@ -57,7 +57,7 @@ int main(){
             player = 2;
         }
 
-        printf("Move for player %d(1-9)", player);
+        printf("Move for player %d(%c sign) ", player, sign);
         scanf("%d", &ID);
         if(ID<1 || ID>9){
             printf("Invalid Number, Allowed index is 1 to 9!\n");
@@ -71,6 +71,7 @@ int main(){
         pos[ID-1] = sign;
         count++;
 
+        //horizontal logic
         for(i=0; i<9; i++){
             if(i%3==0){
                 flag = 0;
@@ -86,6 +87,7 @@ int main(){
 
         flag = 0;
 
+        //vertical logic
         for(i=0; i<3; i++){
             for(k=i; k<=i + 6; k +=3){
                 if(pos[k] == sign){
@@ -100,11 +102,15 @@ int main(){
              flag = 0;
         }
 
-       
+        flag = 0;
+
+       //diagonal logic
         if((pos[0] == sign && pos[4] == sign && pos[8] == sign) || (pos[2] == sign && pos[4] == sign && pos[6] == sign)){
             winner = 1;
             win(player, winner, pos);
         }
+
+        system("cls");
     }
 }
 
