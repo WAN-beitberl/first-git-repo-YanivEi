@@ -1,5 +1,21 @@
 #include <stdio.h>
 
+void win(int player, int winner, int pos[]){
+    printf("\n");
+    printf("%c|%c|%c\n", pos[0],pos[1],pos[2]);
+    printf("-----\n");
+    printf("%c|%c|%c\n", pos[3],pos[4],pos[5]);
+    printf("-----\n");
+    printf("%c|%c|%c\n", pos[6],pos[7],pos[8]);
+    if(winner==1){
+        printf("Player %d is the winner!\n", player);
+    }
+    else{
+        printf("Draw!\n");
+    }
+}
+//WOAAAAHH THIS TEXT IS DIFFERENT
+
 int main(){
     int winner = 0; //bool
     int count = 0;
@@ -92,18 +108,3 @@ int main(){
     }
 }
 
-void win(int player, int winner, int pos[]){
-    printf("\n");
-    printf("%c|%c|%c\n", pos[0],pos[1],pos[2]);
-    printf("-----\n");
-    printf("%c|%c|%c\n", pos[3],pos[4],pos[5]);
-    printf("-----\n");
-    printf("%c|%c|%c\n", pos[6],pos[7],pos[8]);
-    if(winner==1){
-        printf("Player %d is the winner!\n", player);
-    }
-    else{
-        printf("Draw!\n");
-    }
-}
-//WOAAAAHH THIS TEXT IS DIFFERENT
